@@ -17,7 +17,7 @@ int word_count(char *word_list, char select_word)
 
 void new_password(char *pas)
 {
-    char list[] = "abcdefghijklmnopqrstuvwxyz0123456789";
+    char list[] = "abcdefghijklmnopqrstuvwxyz";
     char last_word;
     int last_count = 0;
     int count = 0;
@@ -88,27 +88,20 @@ void new_password(char *pas)
     return;
 }
 
+
 int main()
 {
     char password[256];
-    char file_name[] = "OS-kakomon2018.pdf";
-    char out_file_name[] = "OS-kakomon2018.pdf.de";
-    char qpdf_shell[] = "./password.sh";
-   
-    while(1)
+    FILE * file = fopen( "attack_list.txt", "w" );
+    int i = 0;
+
+    while( i < 6 )
     {
-        new_password(password);
-        printf("%s\n", password);
-        char sh[100];
-        sprintf(sh, "%s %s %s %s", qpdf_shell, password, file_name, out_file_name);
-        system(sh);
-        
-        if(fopen(out_file_name, "r"))
-        {
-            printf("ok\n");
-            break;
-        }
+        new_password( password );
+        fprintf( file, password );
+        fprintf( file, "\n" );
+        i = strlen( password );
     }
-        
+
 }
 
