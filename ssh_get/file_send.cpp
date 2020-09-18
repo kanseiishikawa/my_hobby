@@ -59,15 +59,15 @@ file_send::send_data( std::string url ) {
         field = curl_mime_addpart( form );
         curl_mime_name( field, file_name_list[i].first.c_str() );//フォームの名前を入力
         curl_mime_filedata(field, file_name_list[i].second.c_str() );
-
+        
         if( file_name.size() == 0 )
         {
-            file_name = file_name_list[i].second;
+            file_name = file_name_list[i].first;
         } else {
-            file_name += ":" + file_name_list[i].second;
+            file_name += ":" + file_name_list[i].first;
         }
     }
-    
+
     for( int i = 0; i < form_name_list.size(); i++ )
     {
         field = curl_mime_addpart( form );
