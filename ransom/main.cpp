@@ -12,7 +12,7 @@ int main()
 {
     search s;
     std::vector< std::string >list = s.search_file();
-
+    
     RSA rsa;
     RSA::code_key ck = rsa.key_generate( 1000 );
     
